@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+  	
+  	<meta charset="utf-8">
+	<title>Pagamento Pagseguro - API</title>
+	<link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+</head>
+<body ng-app="myApp" ng-controller="IndexCtrl">
+
+	<div id="navbar" class="navbar navbar-inverse bg-inverse navbar-static-top">
+
+		<div class="container">
+			<a class="navbar-brand" href="#">Exemplo Pagseguro</a>
+
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+
+				<ul class="nav navbar-nav">
+			      <li class="nav-item active">
+			        <a class="nav-link" href="#">Compra por API <span class="sr-only">(current)</span></a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="#">Compra Através do Botão</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="/pagamento">Compra Transparente</a>
+			      </li>
+			      <li class="nav-item">
+			        <a class="nav-link" href="#">Pagamento Recorrente Transparente</a>
+			      </li>
+			    </ul>
+
+			</div>
+		</div>		
+
+	</div>
+
+	<div class="container">
+		
+		<h1>Pagamento Pagseguro através da API</h1>
+
+		<div class="form-inline" style="margin-top: 20px; margin-bottom: 20px; text-align: center;">
+		    
+		    <div class="thumbnail" style="width: 286px; height: 430px; display: inline-block; margin: 10px 10px; cursor: pointer;" ng-repeat="pro in produtos" >
+		      <div style="text-align: left; padding-left: 5px;" ng-click="seleciona(pro)">
+		      	<input type="checkbox" name="" ng-model="pro.selecionado">
+		      </div>
+		      <img src="{$pro.img$}" ng-click="seleciona(pro)">
+		      <div class="caption">
+		        <h3 ng-click="seleciona(pro)">{$pro.nome$}</h3>
+		        <p ng-click="seleciona(pro)">{$pro.precoesc$}</p>
+		        <p><input type="number" name="" ng-model="pro.quantidade" style="text-align: center; width: 100px;"></p>
+		      </div>
+		    </div>
+
+		</div>
+
+		<h2>Dados do Comprador</h2>
+
+		<form style="margin-bottom: 50px;">
+			<div class="form-group">
+				<label for="nomeComprador">Nome Comprador:</label>
+				<input type="text" class="form-control" id="nomeComprador" placeholder="Ex: Filipe Assad" ng-model="nomeCom">
+			</div>
+			<div>
+				<label>Telefone:</label>
+				<div class="row">					
+					<div class="form-group col-md-1">
+						<input type="text" class="form-control" id="dddComprador" placeholder="DDD" ng-model="dddCom" >		
+					</div>
+					<div class="form-group col-md-11">
+						<input type="text" class="form-control" id="telefoneComprador" placeholder="999999999" ng-model="telefoneCom">		
+					</div>					
+				</div>	
+			</div>
+			<div class="form-group">
+				<label for="emailComprador">Email Comprador:</label>
+				<input type="text" class="form-control" id="emailComprador" placeholder="Ex: exemplo@gmail.com" ng-model="emailCom">
+			</div>
+			<div>
+				<label>Endereço:</label>
+				<div class="row">					
+					<div class="form-group col-md-8">
+						<input type="text" class="form-control" id="ruaComprador" placeholder="Rua" ng-model="ruaCom">		
+					</div>
+					<div class="form-group col-md-4">
+						<input type="text" class="form-control" id="numeroComprador" placeholder="Número" ng-model="numeroCom">		
+					</div>					
+				</div>
+				<div class="row">					
+					<div class="form-group col-md-6">
+						<input type="text" class="form-control" id="complementoComprador" placeholder="Complemento" ng-model="complementoCom">		
+					</div>
+					<div class="form-group col-md-6">
+						<input type="text" class="form-control" id="bairroComprador" placeholder="Bairro" ng-model="bairroCom">		
+					</div>					
+				</div>	
+				<div class="row">					
+					<div class="form-group col-md-8">
+						<input type="text" class="form-control" id="cidadeComprador" placeholder="Cidade" ng-model="cidadeCom">		
+					</div>
+					<div class="form-group col-md-2">
+						<input type="text" class="form-control" id="estadoComprador" placeholder="Estado" ng-model="estadoCom">		
+					</div>
+					<div class="form-group col-md-2">
+						<input type="text" class="form-control" id="paisComprador" placeholder="País" ng-model="estadoCom">		
+					</div>					
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" id="cepComprador" placeholder="CEP" ng-model="cepCom">
+				</div>
+				<div class="form-group">
+					<div class="btn btn-primary" ng-click="comprar()">Comprar</div>
+				</div>
+			</div>
+		</form>
+
+	</div>	
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="{% static 'mascara/angular-input-masks-standalone.min.js' %}"></script>
+    <script src="{% static 'scripts/ng_application_ctrl.js' %}"></script>
+    <script src="{% static 'scripts/ng_index_ctrl.js' %}"></script>
+
+</body>
+</html>
